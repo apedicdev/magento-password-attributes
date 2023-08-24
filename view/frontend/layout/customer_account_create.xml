@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceBlock name="customer_form_register">
+            <arguments>
+                <argument name="passwordAttributesConfig" xsi:type="object">Apedik\PasswordAttributes\Model\Config</argument>
+                <argument name="passwordAttributesBlock" xsi:type="object">Apedik\PasswordAttributes\Block\PasswordAttributes</argument>
+            </arguments>
+            <action method="setTemplate">
+                <argument name="template" xsi:type="string">Apedik_PasswordAttributes::form/register.phtml</argument>
+            </action>
+        </referenceBlock>
+    </body>
+</page>

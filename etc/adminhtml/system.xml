@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="customer">
+            <group id="password">
+                <field id="form_password_attributes_enabled" translate="label comment" type="select" sortOrder="85"
+                       showInDefault="1" canRestore="1">
+                    <label>Use password attributes</label>
+                    <comment>If set to Yes, password attributes will be added to input type="password" element.
+                    </comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="form_password_attributes_pattern_enabled" translate="label comment" type="select"
+                       sortOrder="90" showInDefault="1" canRestore="1">
+                    <label>Use password attributes</label>
+                    <comment>If set to Yes, password attribute pattern will be added to input type="password" element.
+                    </comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="form_password_attributes_enabled">1</field>
+                    </depends>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>
