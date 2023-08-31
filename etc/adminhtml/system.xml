@@ -13,7 +13,7 @@
                 </field>
                 <field id="form_password_attributes_pattern_enabled" translate="label comment" type="select"
                        sortOrder="90" showInDefault="1" canRestore="1">
-                    <label>Use password attributes</label>
+                    <label>Use password pattern</label>
                     <comment>If set to Yes, password attribute pattern will be added to input type="password" element.
                     </comment>
                     <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
@@ -21,6 +21,17 @@
                         <field id="form_password_attributes_enabled">1</field>
                     </depends>
                 </field>
+                <field id="form_password_attributes_rules_enabled" translate="label comment" type="select"
+                       sortOrder="95" showInDefault="1" canRestore="1">
+                    <label>Use password rules</label>
+                    <comment>If set to Yes, password rules will be added to input type="password" element.
+                    </comment>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <depends>
+                        <field id="form_password_rules_enabled">1</field>
+                    </depends>
+                </field>
+
             </group>
         </section>
     </system>

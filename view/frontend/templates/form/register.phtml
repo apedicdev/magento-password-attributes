@@ -279,13 +279,16 @@ $createAccountButtonViewModel = $block->getData('create_account_button_view_mode
                        $escaper->escapeHtmlAttr($block->getMinimumPasswordLength()) ?>"
                        data-password-min-character-sets="<?=
                        $escaper->escapeHtmlAttr($block->getRequiredCharacterClassesNumber()) ?>"
-                       data-validate="{required:true, 'validate-customer-password':true}"
                     <?php if ($configHelper->isPasswordAttributesEnabled() === true): ?>
                         minlength="<?= $escaper->escapeHtmlAttr($block->getMinimumPasswordLength()) ?>"
-                        autocomplete='new-password'
+                        autocomplete="new-password"
+                        required
                     <?php endif; ?>
                     <?php if ($configHelper->isPasswordAttributesPattenEnabled() === true): ?>
                         pattern="<?= $escaper->escapeHtmlAttr($passwordAttributesBlock->getPasswordPattern()) ?>"
+                    <?php endif; ?>
+                    <?php if ($configHelper->isPasswordRulesEnabled() === true): ?>
+                        passwordrules="<?= $escaper->escapeHtmlAttr($passwordAttributesBlock->getPasswordRules()) ?>"
                     <?php endif; ?>
                 >
                 <div id="password-strength-meter-container" data-role="password-strength-meter" aria-live="polite">
@@ -310,7 +313,15 @@ $createAccountButtonViewModel = $block->getData('create_account_button_view_mode
                        id="password-confirmation"
                        class="input-text"
                        data-validate="{required:true, equalTo:'#password'}"
-                       autocomplete="off">
+                    <?php if ($configHelper->isPasswordAttributesEnabled() === true): ?>
+                        minlength="<?= $escaper->escapeHtmlAttr($block->getMinimumPasswordLength()) ?>"
+                        autocomplete="new-password"
+                        required
+                    <?php endif; ?>
+                    <?php if ($configHelper->isPasswordAttributesPattenEnabled() === true): ?>
+                        pattern="<?= $escaper->escapeHtmlAttr($passwordAttributesBlock->getPasswordPattern()) ?>"
+                    <?php endif; ?>
+                >
             </div>
         </div>
         <div class="field choice" data-bind="scope: 'showPassword'">
