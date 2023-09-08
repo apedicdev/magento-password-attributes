@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ /**
+  * Copyright © Magento, Inc. All rights reserved.
+  * See COPYING.txt for license details.
+  */
+-->
+
+<tests xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:noNamespaceSchemaLocation="urn:magento:mftf:Test/etc/testSchema.xsd">
+    <test name="StorefrontCreateCustomer3CharsClassesTest" extends="StorefrontCreateCustomerTest">
+        <before>
+            <magentoCLI command="config:set customer/password/required_character_classes_number 3" stepKey="digitUpperLowerCasePassword"/>
+        </before>
+        <actionGroup ref="StorefrontFillCustomerAccountCreationFormActionGroup" stepKey="fillCreateAccountForm">
+            <argument name="customer" value="Simple_US_Customer_PasswordAttributeDigitUpperLowercase"/>
+        </actionGroup>
+    </test>
+</tests>
