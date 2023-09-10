@@ -8,6 +8,8 @@ This is very useful for password managers and browsers to suggest the right pass
 
 For reference: https://developer.mozilla.org/en-US/docs/Web/HTML/Element/input/password
 
+Apple Password rules: https://developer.apple.com/password-rules/
+
 #### Configuration
 
 Magento section`customer/password`:
@@ -38,3 +40,48 @@ Testing min. length 40 characters:
 <img src="https://images2.imgbox.com/ae/1d/tKdWPWw5_o.png" alt="image host"/>
 
 The suggested password will satisfy requirements.
+
+MFTF support, for testing different password scenarios.
+
+```
+ vendor/bin/mftf run:test StorefrontCreateCustomer4CharsClassesTest
+
+Generate Tests Command Run
+
+Codeception PHP Testing Framework v5.0.11 https://helpukrainewin.org
+
+Magento\FunctionalTestingFramework.functional Tests (1) ------------------------
+Modules: \Magento\FunctionalTestingFramework\Module\MagentoWebDriver, \Magento\FunctionalTestingFramework\Module\MagentoSequence, \Magento\FunctionalTestingFramework\Module\MagentoAssert, \Magento\FunctionalTestingFramework\Module\MagentoActionProxies, Asserts, \Magento\FunctionalTestingFramework\Helper\HelperContainer
+--------------------------------------------------------------------------------
+StorefrontCreateCustomer4CharsClassesTestCest: Storefront create customer4 chars classes test
+Signature: Magento\AcceptanceTest\_default\Backend\StorefrontCreateCustomer4CharsClassesTestCest:StorefrontCreateCustomer4CharsClassesTest
+Test: tests/functional/Magento/_generated/default/StorefrontCreateCustomer4CharsClassesTestCest.php:StorefrontCreateCustomer4CharsClassesTest
+Scenario --
+[START BEFORE HOOK]
+[minDigitUpperLowercaseSpecialCharPassword] magento cli "config:set customer/password/required_character_classes_number 4",60
+Value was saved.
+[END BEFORE HOOK]
+[openCreateAccountPage] StorefrontOpenCustomerAccountCreatePageActionGroup
+  [goToCustomerAccountCreatePage] am on page "/customer/account/create/"
+  [waitForPageLoaded] wait for page load 60
+[fillCreateAccountForm] StorefrontFillCustomerAccountCreationFormActionGroup
+  [fillFirstName] fill field "#firstname","John"
+  [fillLastName] fill field "#lastname","Doe"
+  [fillEmail] fill field "#email_address","64fe2906a6b99John.Doe@example.com"
+  [fillPassword] fill field "#password","Asdfghj1!"
+  [fillConfirmPassword] fill field "#password-confirmation","Asdfghj1!"
+[submitCreateAccountForm] StorefrontClickCreateAnAccountCustomerAccountCreationFormActionGroup
+  [waitForCreateAccountButtonIsActive] wait for page load 60
+  [clickCreateAccountButton] click "button.action.submit.primary"
+  [clickCreateAccountButtonWaitForPageLoad] wait for page load 30
+  [waitForCustomerSaved] wait for page load 60
+[seeSuccessMessage] AssertMessageCustomerCreateAccountActionGroup
+  [verifyMessage] see "Thank you for registering with Main Website Store.","#maincontent .message-success"
+ PASSED 
+
+--------------------------------------------------------------------------------
+Time: 00:09.844, Memory: 16.00 MB
+
+OK (1 test, 1 assertion)
+
+```
